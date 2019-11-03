@@ -1,74 +1,71 @@
-const rusSymbols = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
-  'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\',
-  'Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',
-  'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '↑', 'Shift',
-  'Ctrl', 'Win', 'Alt', '', 'Alt', 'Win', 'Ctrl', '←', '↓', '→'];
+// import './keys';
+// import './style.scss';
 
 const map = `<input id="result" autofocus>
 
 <div class="keyboard">
 
 <div class="row">
-  <div class="key hasAlternative" data="Backquote">   <span class='letter letter-ru'>ё</span></div>
-  <div class="key hasAlternative" data="Digit1">      <span>1</span><span>!</span></div>
-  <div class="key hasAlternative" data="Digit2">      <span>2</span><span>"</span></div>
-  <div class="key hasAlternative" data="Digit3">      <span>3</span><span>№</span></div>
-  <div class="key hasAlternative" data="Digit4">      <span>4</span><span>;</span></div>
-  <div class="key hasAlternative" data="Digit5">      <span>5</span><span>%</span></div>
-  <div class="key hasAlternative" data="Digit6">      <span>6</span><span>:</span></div>
-  <div class="key hasAlternative" data="Digit7">      <span>7</span><span>?</span></div>
-  <div class="key hasAlternative" data="Digit8">      <span>8</span><span>*</span></div>
-  <div class="key hasAlternative" data="Digit9">      <span>9</span><span>(</span></div>
-  <div class="key hasAlternative" data="Digit0">      <span>0</span><span>)</span></div>
-  <div class="key hasAlternative" data="Minus">       <span>-</span><span>_</span></div>
-  <div class="key hasAlternative" data="Equal">       <span>=</span><span>+</span></div>
+  <div class="key hasAlternative" data="Backquote">   <span class='ru'>ё</span></div>
+  <div class="key hasAlternative" data="Digit1">      <span class='digit'>1</span> <span class='shift hidden'>!</span></div>
+  <div class="key hasAlternative" data="Digit2">      <span class='digit'>2</span> <span class='shift hidden'>"</span></div>
+  <div class="key hasAlternative" data="Digit3">      <span class='digit'>3</span> <span class='shift hidden'>№</span></div>
+  <div class="key hasAlternative" data="Digit4">      <span class='digit'>4</span> <span class='shift hidden'>;</span></div>
+  <div class="key hasAlternative" data="Digit5">      <span class='digit'>5</span> <span class='shift hidden'>%</span></div>
+  <div class="key hasAlternative" data="Digit6">      <span class='digit'>6</span> <span class='shift hidden'>:</span></div>
+  <div class="key hasAlternative" data="Digit7">      <span class='digit'>7</span> <span class='shift hidden'>?</span></div>
+  <div class="key hasAlternative" data="Digit8">      <span class='digit'>8</span> <span class='shift hidden'>*</span></div>
+  <div class="key hasAlternative" data="Digit9">      <span class='digit'>9</span> <span class='shift hidden'>(</span></div>
+  <div class="key hasAlternative" data="Digit0">      <span class='digit'>0</span> <span class='shift hidden'>)</span></div>
+  <div class="key hasAlternative" data="Minus">       <span>-</span>               <span class='shift hidden'>_</span></div>
+  <div class="key hasAlternative" data="Equal">       <span>=</span>               <span class='shift hidden'>+</span></div>
   <div class="key backspace"      data="Backspace">   <span>Backspace</span></div>
 </div>
 <div class="row">
   <div class="key tab"            data="Tab">         <span>Tab</span></div>
-  <div class="key hasAlternative" data="KeyQ">        <span class='letter letter-ru'>й</span></div>
-  <div class="key hasAlternative" data="KeyW">        <span class='letter letter-ru'>ц</span></div>
-  <div class="key hasAlternative" data="KeyE">        <span class='letter letter-ru'>у</span></div>
-  <div class="key hasAlternative" data="KeyR">        <span class='letter letter-ru'>к</span></div>
-  <div class="key hasAlternative" data="KeyT">        <span class='letter letter-ru'>е</span></div>
-  <div class="key hasAlternative" data="KeyY">        <span class='letter letter-ru'>н</span></div>
-  <div class="key hasAlternative" data="KeyU">        <span class='letter letter-ru'>г</span></div>
-  <div class="key hasAlternative" data="KeyI">        <span class='letter letter-ru'>ш</span></div>
-  <div class="key hasAlternative" data="KeyO">        <span class='letter letter-ru'>щ</span></div>
-  <div class="key hasAlternative" data="KeyP">        <span class='letter letter-ru'>з</span></div>
-  <div class="key hasAlternative" data="BracketLeft"> <span class='letter letter-ru'>х</span></div>
-  <div class="key hasAlternative" data="BracketRight"><span class='letter letter-ru'>ъ</span></div>
+  <div class="key hasAlternative" data="KeyQ">        <span class='ru'>й</span> <span class='en hidden'>q</span></div>
+  <div class="key hasAlternative" data="KeyW">        <span class='ru'>ц</span> <span class='en hidden'>w</span></div>
+  <div class="key hasAlternative" data="KeyE">        <span class='ru'>у</span> <span class='en hidden'>e</span></div>
+  <div class="key hasAlternative" data="KeyR">        <span class='ru'>к</span> <span class='en hidden'>r</span></div>
+  <div class="key hasAlternative" data="KeyT">        <span class='ru'>е</span> <span class='en hidden'>t</span></div>
+  <div class="key hasAlternative" data="KeyY">        <span class='ru'>н</span> <span class='en hidden'>y</span></div>
+  <div class="key hasAlternative" data="KeyU">        <span class='ru'>г</span> <span class='en hidden'>u</span></div>
+  <div class="key hasAlternative" data="KeyI">        <span class='ru'>ш</span> <span class='en hidden'>i</span></div>
+  <div class="key hasAlternative" data="KeyO">        <span class='ru'>щ</span> <span class='en hidden'>o</span></div>
+  <div class="key hasAlternative" data="KeyP">        <span class='ru'>з</span> <span class='en hidden'>p</span></div>
+  <div class="key hasAlternative" data="BracketLeft"> <span class='ru'>х</span> <span class='en hidden'>[</span></div>
+  <div class="key hasAlternative" data="BracketRight"><span class='ru'>ъ</span> <span class='en hidden'>]</span></div>
   <div class="key hasAlternative" data="Backslash">   <span>\\</span><span>/</span></div>
 </div>
 <div class="row">
   <div class="key capslock"       data="CapsLock">    <span>Caps Lock</span></div>
-  <div class="key hasAlternative" data="KeyA">        <span class='letter letter-ru'>ф</span></div>
-  <div class="key hasAlternative" data="KeyS">        <span class='letter letter-ru'>ы</span></div>
-  <div class="key hasAlternative" data="KeyD">        <span class='letter letter-ru'>в</span></div>
-  <div class="key hasAlternative" data="KeyF">        <span class='letter letter-ru'>а</span></div>
-  <div class="key hasAlternative" data="KeyG">        <span class='letter letter-ru'>п</span></div>
-  <div class="key hasAlternative" data="KeyH">        <span class='letter letter-ru'>р</span></div>
-  <div class="key hasAlternative" data="KeyJ">        <span class='letter letter-ru'>о</span></div>
-  <div class="key hasAlternative" data="KeyK">        <span class='letter letter-ru'>л</span></div>
-  <div class="key hasAlternative" data="KeyL">        <span class='letter letter-ru'>д</span></div>
-  <div class="key hasAlternative" data="Semicolon">   <span class='letter letter-ru'>ж</span></div>
-  <div class="key hasAlternative" data="Quote">       <span class='letter letter-ru'>э</span></div>
+  <div class="key hasAlternative" data="KeyA">        <span class='ru'>ф</span> <span class='en hidden'>a</span></div>
+  <div class="key hasAlternative" data="KeyS">        <span class='ru'>ы</span> <span class='en hidden'>s</span></div>
+  <div class="key hasAlternative" data="KeyD">        <span class='ru'>в</span> <span class='en hidden'>d</span></div>
+  <div class="key hasAlternative" data="KeyF">        <span class='ru'>а</span> <span class='en hidden'>f</span></div>
+  <div class="key hasAlternative" data="KeyG">        <span class='ru'>п</span> <span class='en hidden'>g</span></div>
+  <div class="key hasAlternative" data="KeyH">        <span class='ru'>р</span> <span class='en hidden'>h</span></div>
+  <div class="key hasAlternative" data="KeyJ">        <span class='ru'>о</span> <span class='en hidden'>j</span></div>
+  <div class="key hasAlternative" data="KeyK">        <span class='ru'>л</span> <span class='en hidden'>k</span></div>
+  <div class="key hasAlternative" data="KeyL">        <span class='ru'>д</span> <span class='en hidden'>l</span></div>
+  <div class="key hasAlternative" data="Semicolon">   <span class='ru'>ж</span> <span class='en hidden'>;</span></div>
+  <div class="key hasAlternative" data="Quote">       <span class='ru'>э</span> <span class='en hidden'>'</span></div>
   <div class="key enter"          data="Enter">       <span>Enter</span></div>
 </div>
 <div class="row">
   <div class="key shift"          data="ShiftLeft">   <span>Shift</span></div>
-  <div class="key hasAlternative" data="KeyZ">        <span class='letter letter-ru'>я</span></div>
-  <div class="key hasAlternative" data="KeyX">        <span class='letter letter-ru'>ч</span></div>
-  <div class="key hasAlternative" data="KeyC">        <span class='letter letter-ru'>с</span></div>
-  <div class="key hasAlternative" data="KeyV">        <span class='letter letter-ru'>м</span></div>
-  <div class="key hasAlternative" data="KeyB">        <span class='letter letter-ru'>и</span></div>
-  <div class="key hasAlternative" data="KeyN">        <span class='letter letter-ru'>т</span></div>
-  <div class="key hasAlternative" data="KeyM">        <span class='letter letter-ru'>ь</span></div>
-  <div class="key hasAlternative" data="Comma">       <span class='letter letter-ru'>б</span></div>
-  <div class="key hasAlternative" data="Period">      <span class='letter letter-ru'>ю</span></div>
-  <div class="key hasAlternative" data="Slash">       <span class='letter'>.</span><span>,</span></div>
+  <div class="key hasAlternative" data="KeyZ">        <span class='ru'>я</span> <span class='en hidden'>z</span></div>
+  <div class="key hasAlternative" data="KeyX">        <span class='ru'>ч</span> <span class='en hidden'>x</span></div>
+  <div class="key hasAlternative" data="KeyC">        <span class='ru'>с</span> <span class='en hidden'>c</span></div>
+  <div class="key hasAlternative" data="KeyV">        <span class='ru'>м</span> <span class='en hidden'>v</span></div>
+  <div class="key hasAlternative" data="KeyB">        <span class='ru'>и</span> <span class='en hidden'>b</span></div>
+  <div class="key hasAlternative" data="KeyN">        <span class='ru'>т</span> <span class='en hidden'>n</span></div>
+  <div class="key hasAlternative" data="KeyM">        <span class='ru'>ь</span> <span class='en hidden'>m</span></div>
+  <div class="key hasAlternative" data="Comma">       <span class='ru'>б</span> <span class='en hidden'>,</span></div>
+  <div class="key hasAlternative" data="Period">      <span class='ru'>ю</span> <span class='en hidden'>.</span></div>
+  <div class="key hasAlternative" data="Slash">       <span class='ru'>.</span>   <span class='en hidden'>,</span></div>
   <div class="key arrow"          data="ArrowUp">     <span>&#8593;</span></div>
-  <div class="key rightShift"     data="ShiftRight">  <span>Shift</span></div>
+  <div class="key shift-right"     data="ShiftRight">  <span>Shift</span></div>
 </div>
 <div class="row">
   <div class="key ctrl"  data="ControlLeft">Ctrl</div>
@@ -84,50 +81,9 @@ const map = `<input id="result" autofocus>
 
 </div>`;
 
-
-const wrapper = document.createElement('div');
-wrapper.className = 'wrapper';
-wrapper.innerHTML = map;
-document.body.append(wrapper);
-
-let capslock = false;
-
-let keys = document.querySelectorAll('.key');
-// convert to array
-keys = Array.prototype.slice.call(keys);
-
-
-keys.map((elem) => {
-  elem.addEventListener('mousedown', () => {
-    handleMouseDown(elem);
-    console.log('mousedown');
-  });
-
-  elem.addEventListener('mouseup', () => {
-    elem.classList.toggle('active');
-    console.log('mouseup');
-  });
-  return true;
-});
-
-document.addEventListener('keydown', (e) => {
-  // eslint-disable-next-line no-useless-concat
-  const element = document.querySelector('div[data="' + `${e.code}` + '"]');
-  element.classList.toggle('active');
-  console.log(`${e.keyCode} keydown`);
-});
-
-document.addEventListener('keyup', (e) => {
-  // eslint-disable-next-line no-useless-concat
-  const element = document.querySelector('div[data="' + `${e.code}` + '"]');
-  element.classList.toggle('active');
-  console.log(`${e.code} keyup`);
-});
-
-const textarea = document.getElementById('result');
-
-
-const handleMouseDown = (element) => {
+let lengEn = false;
+let capsLock = false;
+const mouseDown = (element) => {
   element.addEventListener('mouseout', () => {
     element.classList.remove('active');
   });
@@ -136,36 +92,117 @@ const handleMouseDown = (element) => {
 
   const code = element.getAttribute('data');
   if (code !== 'Tab'
-         && code !== 'CapsLock'
-         && code !== 'ShiftLeft'
-         && code !== 'ShiftRight'
-         && code !== 'AltLeft'
-         && code !== 'AltRight'
-         && code !== 'MetaLeft'
-         && code !== 'MetaRight'
-         && code !== 'Backspace'
-         && code !== 'ControlLeft'
-         && code !== 'ControlRight'
-         && code !== 'Enter'
-         && code !== 'ArrowLeft'
-         && code !== 'ArrowUp'
-         && code !== 'ArrowRight'
-         && code !== 'ArrowDown') {
-    textarea.value += element.innerText;
+    && code !== 'CapsLock'
+    && code !== 'ShiftLeft'
+    && code !== 'ShiftRight'
+    && code !== 'AltLeft'
+    && code !== 'AltRight'
+    && code !== 'MetaLeft'
+    && code !== 'MetaRight'
+    && code !== 'Backspace'
+    && code !== 'ControlLeft'
+    && code !== 'ControlRight'
+    && code !== 'Enter'
+    && code !== 'ArrowLeft'
+    && code !== 'ArrowUp'
+    && code !== 'ArrowRight'
+    && code !== 'ArrowDown') {
+    if (!capsLock) {
+      textarea.value += element.innerText;
+    }
+    else {
+      textarea.value += String.prototype.toUpperCase.apply(element.innerText);
+    }
   }
   if (code === 'Tab') {
     textarea.value += '\t';
   }
   if (code === 'CapsLock') {
-
+    if (capsLock) {
+      capsLock = false;
+    } else {
+      capsLock = true;
+    }
+    capslockEl.classList.toggle('capslock-active');
+    console.log('CapsLock');
   }
   if (code === 'Enter') {
     textarea.value += '\n';
   }
-  if (code === 'ShiftRight' || code === 'ShiftLeft') {
 
-  }
   if (code === 'Backspace') {
     textarea.value = textarea.value.slice(0, -1);
   }
 };
+
+
+const wrapper = document.createElement('div');
+wrapper.className = 'wrapper';
+
+wrapper.innerHTML = map;
+
+const row = document.createElement('div');
+row.className = 'row';
+
+document.body.append(wrapper);
+
+const textarea = document.getElementById('result');
+const capslockEl = document.querySelector('.capslock');
+
+let keys = document.querySelectorAll('.key');
+keys = Array.prototype.slice.call(keys);
+
+
+let ruSymbols = document.querySelectorAll('.ru');
+ruSymbols = Array.prototype.slice.call(ruSymbols);
+
+let enSymbols = document.querySelectorAll('.en');
+enSymbols = Array.prototype.slice.call(enSymbols);
+
+
+keys.map((elem) => {
+  elem.addEventListener('mousedown', () => {
+    mouseDown(elem);
+  });
+
+  elem.addEventListener('mouseup', () => {
+    elem.classList.toggle('active');
+  });
+  return true;
+});
+
+document.addEventListener('keydown', (e) => {
+  const element = document.querySelector('div[data="' + `${e.code}` + '"]');
+  textarea.focus();
+  element.classList.toggle('active');
+
+  if (e.altKey && e.shiftKey) {
+    if (lengEn) {
+      lengEn = false;
+    } else {
+      lengEn = true;
+    }
+    ruSymbols.map((elem) => {
+      if (lengEn) {
+        elem.classList.add('hidden');
+      } else {
+        elem.classList.remove('hidden');
+      }
+    });
+    enSymbols.map((elem) => {
+      if (!lengEn) {
+        elem.classList.add('hidden');
+      } else {
+        elem.classList.remove('hidden');
+      }
+    });
+
+    console.log('сменили раскладку');
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  const element = document.querySelector('div[data="' + `${e.code}` + '"]');
+  textarea.focus();
+  element.classList.toggle('active');
+});

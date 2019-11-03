@@ -43,6 +43,10 @@
   background: #251c1c
 }
 
+
+.keyboard .key .hidden{
+  display: none;
+}
 .keyboard .backspace,.keyboard .capslock,.keyboard .shift {
   width: 100px
 }
@@ -95,5 +99,8 @@
 
 .down {
   display: inherit
+}
+.capslock-active span{
+  color: green;
 }
 
