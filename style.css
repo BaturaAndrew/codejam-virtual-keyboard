@@ -47,11 +47,11 @@
 .keyboard .key .hidden{
   display: none;
 }
-.keyboard .backspace,.keyboard .capslock,.keyboard .shift {
+.keyboard .backspace,.keyboard .capslock,.keyboard .shift-left {
   width: 100px
 }
 
-.keyboard .alt,.keyboard .arrow,.keyboard .backspace,.keyboard .capslock,.keyboard .ctrl,.keyboard .del,.keyboard .enter,.keyboard .shift,.keyboard .shift-right,.keyboard .tab,.keyboard .win {
+.keyboard .alt,.keyboard .arrow,.keyboard .backspace,.keyboard .capslock,.keyboard .ctrl,.keyboard .del,.keyboard .enter,.keyboard .shift-left,.keyboard .shift-right,.keyboard .tab,.keyboard .win {
   font-weight: 600;
   color: grey;
   background-color: #1c232e
@@ -100,7 +100,7 @@
 .down {
   display: inherit
 }
-.capslock-active span{
+.capslock-active span, .shift-active span{
   color: green;
 }
 
