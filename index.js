@@ -1,5 +1,3 @@
-// import './style.scss';
-
 const map = `<textarea  id="result" autofocus></textarea>
 
 <div class="keyboard">
@@ -83,8 +81,7 @@ const map = `<textarea  id="result" autofocus></textarea>
 let langEn = false;
 let capsLock = false;
 let shift = false;
-let offsetLeft = 0;
-let offsetRight = 0;
+let offset = 0;
 const wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
 wrapper.innerHTML = map;
@@ -237,7 +234,7 @@ const printSimbol = (element) => {
       textarea.value = textarea.value.substring(0, textarea.selectionStart)
         + element.innerText
         + textarea.value.substring(textarea.selectionEnd, textarea.value.length);
-      textarea.selectionStart = textarea.value.length - offsetLeft;
+      textarea.selectionStart = textarea.value.length + offset;
       textarea.selectionEnd = textarea.selectionStart;
       // print a symbol in UpperCase
     } else {
@@ -250,20 +247,16 @@ const printSimbol = (element) => {
   }
 
   if (code === 'ArrowLeft') {
-    offsetLeft = textarea.selectionStart - 1;
-    offsetRight++;
-    if (textarea.value.length - offsetLeft > -1) {
-      textarea.selectionEnd = offsetLeft;
-      textarea.selectionStart = offsetLeft;
+    offset -= 1;
+    if (textarea.value.length - offset > -1) {
+      textarea.selectionEnd -= 1;
     }
   }
 
   if (code === 'ArrowRight') {
-    offsetRight = textarea.selectionStart + 1;
-    offsetLeft--;
-    if (textarea.value.length + 1 > offsetRight) {
-      textarea.selectionStart = offsetRight;
-      textarea.selectionEnd = offsetRight;
+    offset += 1;
+    if (textarea.value.length + 1 > offset) {
+      textarea.selectionStart += 1;
     }
   }
 
