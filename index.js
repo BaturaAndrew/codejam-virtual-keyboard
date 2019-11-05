@@ -5,7 +5,7 @@ const map = `<textarea  id="result" autofocus></textarea>
 <div class="keyboard">
 
 <div class="row">
-  <div class="key" data="Backquote">   <span class='ru'>ё</span>    <span class='en shift hidden'>\`</span><span class='en tilde'>~</span></div>
+  <div class="key" data="Backquote">   <span class='ru'>ё</span>    <span class='tilde digit'>\`</span><span class='tilde shift hidden'>~</span></div>
   <div class="key" data="Digit1">      <span class='digit'>1</span> <span class='shift hidden'>!</span></div>
   <div class="key" data="Digit2">      <span class='digit'>2</span> <span class='shift hidden'>"</span></div>
   <div class="key" data="Digit3">      <span class='digit'>3</span> <span class='shift hidden'>№</span></div>
@@ -80,11 +80,11 @@ const map = `<textarea  id="result" autofocus></textarea>
 
 </div>`;
 
-let lengEn = false;
+let langEn = false;
 let capsLock = false;
 let shift = false;
-const offsetLeft = 0;
-const offsetRight = 0;
+let offsetLeft = 0;
+let offsetRight = 0;
 const wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
 wrapper.innerHTML = map;
@@ -115,7 +115,18 @@ specialSymbols = Array.prototype.slice.call(specialSymbols);
 let digitSymbols = document.querySelectorAll('.digit');
 digitSymbols = Array.prototype.slice.call(digitSymbols);
 
-const tilde = document.querySelector('.tilde');
+let tilde = document.querySelectorAll('.tilde');
+tilde = Array.prototype.slice.call(tilde);
+
+langEn = JSON.parse(localStorage.getItem('lang'));
+if (langEn) {
+  ruSymbols.map((elem) => {
+    elem.classList.toggle('hidden');
+  });
+  enSymbols.map((elem) => {
+    elem.classList.toggle('hidden');
+  });
+}
 
 keys.map((elem) => {
   elem.addEventListener('mousedown', () => {
@@ -146,14 +157,24 @@ document.addEventListener('keydown', (e) => {
   const element = document.querySelector('div[data="' + `${e.code}` + '"]');
 
   if ((e.altKey) && (e.shiftKey)) {
-    (lengEn) ? lengEn = false : lengEn = true;
-
+    (langEn) ? langEn = false : langEn = true;
+    localStorage.setItem('lang', JSON.stringify(langEn));
     ruSymbols.map((elem) => {
       elem.classList.toggle('hidden');
     });
     enSymbols.map((elem) => {
       elem.classList.toggle('hidden');
     });
+
+    if (!langEn) {
+      tilde.map((elem) => {
+        elem.classList.add('tilde-hidden');
+      });
+    } else {
+      tilde.map((elem) => {
+        elem.classList.remove('tilde-hidden');
+      });
+    }
   }
 
   if ((e.shiftKey) && (!e.altKey)) {
@@ -167,8 +188,6 @@ document.addEventListener('keydown', (e) => {
     digitSymbols.map((elem) => {
       elem.classList.toggle('hidden');
     });
-
-    // tilde.classList.toggle('tilde');
   }
   printSimbol(element);
 
@@ -210,10 +229,16 @@ const printSimbol = (element) => {
     && code !== 'MetaLeft' && code !== 'MetaRight'
     && code !== 'Backspace' && code !== 'ControlLeft'
     && code !== 'ControlRight' && code !== 'Enter'
+    && code !== 'ArrowLeft' && code !== 'ArrowRight'
+    && code !== 'ArrowDown' && code !== 'ArrowUp'
   ) {
     // print a symbol
     if (!capsLock && !shift) {
-      textarea.value += element.innerText;
+      textarea.value = textarea.value.substring(0, textarea.selectionStart)
+        + element.innerText
+        + textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+      textarea.selectionStart = textarea.value.length - offsetLeft;
+      textarea.selectionEnd = textarea.selectionStart;
       // print a symbol in UpperCase
     } else {
       textarea.value += String.prototype.toUpperCase.apply(element.innerText);
@@ -224,21 +249,23 @@ const printSimbol = (element) => {
     textarea.value += '\t';
   }
 
-  // if (code === 'ArrowLeft') {
-  //   offsetLeft = textarea.selectionStart - 1;
-  //   if (textarea.value.length - offsetLeft > -1) {
-  //     textarea.selectionEnd = offsetLeft;
-  //     textarea.selectionStart = offsetLeft;
-  //   }
-  // }
+  if (code === 'ArrowLeft') {
+    offsetLeft = textarea.selectionStart - 1;
+    offsetRight++;
+    if (textarea.value.length - offsetLeft > -1) {
+      textarea.selectionEnd = offsetLeft;
+      textarea.selectionStart = offsetLeft;
+    }
+  }
 
-  // if (code === 'ArrowRight') {
-  //   offsetRight = textarea.selectionStart + 1;
-  //   if (textarea.value.length > offsetRight) {
-  //     textarea.selectionStart = offsetRight;
-  //     textarea.selectionEnd = offsetRight;
-  //   }
-  // }
+  if (code === 'ArrowRight') {
+    offsetRight = textarea.selectionStart + 1;
+    offsetLeft--;
+    if (textarea.value.length + 1 > offsetRight) {
+      textarea.selectionStart = offsetRight;
+      textarea.selectionEnd = offsetRight;
+    }
+  }
 
   if (code === 'CapsLock') {
     (capsLock) ? capsLock = false : capsLock = true;

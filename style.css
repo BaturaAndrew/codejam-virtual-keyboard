@@ -129,6 +129,10 @@
   text-transform: uppercase;
 }
 
-.tilde {
+.tilde-hidden {
   display: none !important;
 }
+
+/* .en .digit{
+  display:block !important;
+} */
