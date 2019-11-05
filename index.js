@@ -1,4 +1,3 @@
-// import './keys';
 // import './style.scss';
 
 const map = `<textarea  id="result" autofocus></textarea>
@@ -6,7 +5,7 @@ const map = `<textarea  id="result" autofocus></textarea>
 <div class="keyboard">
 
 <div class="row">
-  <div class="key" data="Backquote">   <span class='ru'>ё</span>    <span class='shift hidden'>\`</span><span class='en hidden'>~</span></div>
+  <div class="key" data="Backquote">   <span class='ru'>ё</span>    <span class='en shift hidden'>\`</span><span class='en tilde'>~</span></div>
   <div class="key" data="Digit1">      <span class='digit'>1</span> <span class='shift hidden'>!</span></div>
   <div class="key" data="Digit2">      <span class='digit'>2</span> <span class='shift hidden'>"</span></div>
   <div class="key" data="Digit3">      <span class='digit'>3</span> <span class='shift hidden'>№</span></div>
@@ -17,8 +16,8 @@ const map = `<textarea  id="result" autofocus></textarea>
   <div class="key" data="Digit8">      <span class='digit'>8</span> <span class='shift hidden'>*</span></div>
   <div class="key" data="Digit9">      <span class='digit'>9</span> <span class='shift hidden'>(</span></div>
   <div class="key" data="Digit0">      <span class='digit'>0</span> <span class='shift hidden'>)</span></div>
-  <div class="key" data="Minus">       <span>-</span>               <span class='shift hidden'>_</span></div>
-  <div class="key" data="Equal">       <span>=</span>               <span class='shift hidden'>+</span></div>
+  <div class="key" data="Minus">       <span class='digit'>-</span> <span class='shift hidden'>_</span></div>
+  <div class="key" data="Equal">       <span class='digit'>=</span> <span class='shift hidden'>+</span></div>
   <div class="key backspace"      data="Backspace">   <span>Backspace</span></div>
 </div>
 <div class="row">
@@ -35,7 +34,7 @@ const map = `<textarea  id="result" autofocus></textarea>
   <div class="key" data="KeyP">        <span class='ru'>з</span> <span class='en hidden'>p</span></div>
   <div class="key" data="BracketLeft"> <span class='ru'>х</span> <span class='en hidden'>[</span></div>
   <div class="key" data="BracketRight"><span class='ru'>ъ</span> <span class='en hidden'>]</span></div>
-  <div class="key" data="Backslash">   <span>\\</span><span>/</span></div>
+  <div class="key" data="Backslash">   <span class='digit'>\\</span><span class='shift hidden'>/</span></div>
 </div>
 <div class="row">
   <div class="key capslock"       data="CapsLock">    <span>Caps Lock</span></div>
@@ -84,7 +83,8 @@ const map = `<textarea  id="result" autofocus></textarea>
 let lengEn = false;
 let capsLock = false;
 let shift = false;
-
+const offsetLeft = 0;
+const offsetRight = 0;
 const wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
 wrapper.innerHTML = map;
@@ -115,10 +115,24 @@ specialSymbols = Array.prototype.slice.call(specialSymbols);
 let digitSymbols = document.querySelectorAll('.digit');
 digitSymbols = Array.prototype.slice.call(digitSymbols);
 
+const tilde = document.querySelector('.tilde');
+
 keys.map((elem) => {
   elem.addEventListener('mousedown', () => {
-    textarea.focus();
-    mouseDown(elem);
+    printSimbol(elem);
+    const code = elem.getAttribute('data');
+    if (code === 'ShiftLeft') {
+      (shift) ? shift = false : shift = true;
+      shiftLeftEl.classList.toggle('shift-active');
+
+      specialSymbols.map((elem) => {
+        elem.classList.toggle('hidden');
+      });
+
+      digitSymbols.map((elem) => {
+        elem.classList.toggle('hidden');
+      });
+    }
   });
 
   elem.addEventListener('mouseup', () => {
@@ -128,11 +142,10 @@ keys.map((elem) => {
 });
 
 document.addEventListener('keydown', (e) => {
+  e.preventDefault();
   const element = document.querySelector('div[data="' + `${e.code}` + '"]');
-  textarea.focus();
-  element.classList.toggle('active');
 
-  if (e.altKey && e.shiftKey) {
+  if ((e.altKey) && (e.shiftKey)) {
     (lengEn) ? lengEn = false : lengEn = true;
 
     ruSymbols.map((elem) => {
@@ -143,7 +156,7 @@ document.addEventListener('keydown', (e) => {
     });
   }
 
-  if ((e.code === 'ShiftLeft') && (!e.altKey)) {
+  if ((e.shiftKey) && (!e.altKey)) {
     (shift) ? shift = false : shift = true;
     shiftLeftEl.classList.toggle('shift-active');
 
@@ -154,11 +167,25 @@ document.addEventListener('keydown', (e) => {
     digitSymbols.map((elem) => {
       elem.classList.toggle('hidden');
     });
-  }
 
-  if (e.code === 'CapsLock') {
-    (capsLock) ? capsLock = false : capsLock = true;
-    capslockEl.classList.toggle('capslock-active');
+    // tilde.classList.toggle('tilde');
+  }
+  printSimbol(element);
+
+  if (capsLock || shift) {
+    ruSymbols.map((elem) => {
+      elem.classList.add('upper-case');
+    });
+    enSymbols.map((elem) => {
+      elem.classList.add('upper-case');
+    });
+  } else {
+    ruSymbols.map((elem) => {
+      elem.classList.remove('upper-case');
+    });
+    enSymbols.map((elem) => {
+      elem.classList.remove('upper-case');
+    });
   }
 });
 
@@ -168,10 +195,11 @@ document.addEventListener('keyup', (e) => {
   element.classList.toggle('active');
 });
 
-const mouseDown = (element) => {
-  // element.addEventListener('mouseout', () => {
-  //   element.classList.remove('active');
-  // });
+const printSimbol = (element) => {
+  textarea.focus();
+  element.addEventListener('mouseout', () => {
+    element.classList.remove('active');
+  });
 
   element.classList.add('active');
 
@@ -182,10 +210,11 @@ const mouseDown = (element) => {
     && code !== 'MetaLeft' && code !== 'MetaRight'
     && code !== 'Backspace' && code !== 'ControlLeft'
     && code !== 'ControlRight' && code !== 'Enter'
-    && code !== 'ArrowLeft' && code !== 'ArrowUp'
-    && code !== 'ArrowRight' && code !== 'ArrowDown') {
+  ) {
+    // print a symbol
     if (!capsLock && !shift) {
       textarea.value += element.innerText;
+      // print a symbol in UpperCase
     } else {
       textarea.value += String.prototype.toUpperCase.apply(element.innerText);
     }
@@ -195,15 +224,25 @@ const mouseDown = (element) => {
     textarea.value += '\t';
   }
 
+  // if (code === 'ArrowLeft') {
+  //   offsetLeft = textarea.selectionStart - 1;
+  //   if (textarea.value.length - offsetLeft > -1) {
+  //     textarea.selectionEnd = offsetLeft;
+  //     textarea.selectionStart = offsetLeft;
+  //   }
+  // }
+
+  // if (code === 'ArrowRight') {
+  //   offsetRight = textarea.selectionStart + 1;
+  //   if (textarea.value.length > offsetRight) {
+  //     textarea.selectionStart = offsetRight;
+  //     textarea.selectionEnd = offsetRight;
+  //   }
+  // }
+
   if (code === 'CapsLock') {
     (capsLock) ? capsLock = false : capsLock = true;
-
     capslockEl.classList.toggle('capslock-active');
-  }
-
-  if (e.code === 'ShiftLeft') {
-    (shift) ? shift = false : shift = true;
-    shiftLeftEl.classList.toggle('shift-active');
   }
 
   if (code === 'Enter') {
