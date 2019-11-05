@@ -4,21 +4,16 @@
 }
 
 .keyboard {
-  width: 704px;
+  width: 720px;
   margin: 0 auto;
 
-  .row {
-    clear: both;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 8px
-  }
 
   .key {
     float: left;
     width: 40px;
     height: 40px;
     margin-left: 6px;
+    margin-bottom: 8px;
     font-weight: 500;
     line-height: 40px;
     text-align: center;
@@ -39,7 +34,7 @@
       background: #251c1c
     }
 
-    .hidden{
+    .hidden {
       display: none;
     }
   }
@@ -48,7 +43,7 @@
     width: 330px
   }
 
-  .ctrl {
+  .control {
     width: 40px
   }
 
@@ -60,15 +55,17 @@
 
   .alt,
   .arrow,
+  .arrowleft,
+  .arrowdown,
+  .arrowright,
+  .arrowup,
   .backspace,
   .capslock,
-  .ctrl,
-  .del,
+  .control,
   .enter,
   .shift,
-  .shift-right,
   .tab,
-  .win {
+  .metaleft {
     font-weight: 600;
     color: grey;
     background-color: #1c232e
@@ -83,7 +80,7 @@
   }
 
   .enter,
-  .shift-right {
+  .shift:last-child {
     width: 86px
   }
 
@@ -105,4 +102,16 @@
   color: #444
 }
 
+.capslock-active,
+.shift-active {
+  background-color: #5571ee !important;
+  color: white !important;
+}
 
+.upper-case {
+  text-transform: uppercase;
+}
+
+.tilde {
+  display: none !important;
+}

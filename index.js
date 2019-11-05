@@ -1,106 +1,71 @@
-// import './style.scss';
-
-const map = `<textarea  id="result" autofocus></textarea>
-
-<div class="keyboard">
-
-<div class="row">
-  <div class="key" data="Backquote">   <span class='ru'>ё</span>    <span class='en shift hidden'>\`</span><span class='en tilde'>~</span></div>
-  <div class="key" data="Digit1">      <span class='digit'>1</span> <span class='shift hidden'>!</span></div>
-  <div class="key" data="Digit2">      <span class='digit'>2</span> <span class='shift hidden'>"</span></div>
-  <div class="key" data="Digit3">      <span class='digit'>3</span> <span class='shift hidden'>№</span></div>
-  <div class="key" data="Digit4">      <span class='digit'>4</span> <span class='shift hidden'>;</span></div>
-  <div class="key" data="Digit5">      <span class='digit'>5</span> <span class='shift hidden'>%</span></div>
-  <div class="key" data="Digit6">      <span class='digit'>6</span> <span class='shift hidden'>:</span></div>
-  <div class="key" data="Digit7">      <span class='digit'>7</span> <span class='shift hidden'>?</span></div>
-  <div class="key" data="Digit8">      <span class='digit'>8</span> <span class='shift hidden'>*</span></div>
-  <div class="key" data="Digit9">      <span class='digit'>9</span> <span class='shift hidden'>(</span></div>
-  <div class="key" data="Digit0">      <span class='digit'>0</span> <span class='shift hidden'>)</span></div>
-  <div class="key" data="Minus">       <span class='digit'>-</span> <span class='shift hidden'>_</span></div>
-  <div class="key" data="Equal">       <span class='digit'>=</span> <span class='shift hidden'>+</span></div>
-  <div class="key backspace"      data="Backspace">   <span>Backspace</span></div>
-</div>
-<div class="row">
-  <div class="key tab"            data="Tab">         <span>Tab</span></div>
-  <div class="key" data="KeyQ">        <span class='ru'>й</span> <span class='en hidden'>q</span></div>
-  <div class="key" data="KeyW">        <span class='ru'>ц</span> <span class='en hidden'>w</span></div>
-  <div class="key" data="KeyE">        <span class='ru'>у</span> <span class='en hidden'>e</span></div>
-  <div class="key" data="KeyR">        <span class='ru'>к</span> <span class='en hidden'>r</span></div>
-  <div class="key" data="KeyT">        <span class='ru'>е</span> <span class='en hidden'>t</span></div>
-  <div class="key" data="KeyY">        <span class='ru'>н</span> <span class='en hidden'>y</span></div>
-  <div class="key" data="KeyU">        <span class='ru'>г</span> <span class='en hidden'>u</span></div>
-  <div class="key" data="KeyI">        <span class='ru'>ш</span> <span class='en hidden'>i</span></div>
-  <div class="key" data="KeyO">        <span class='ru'>щ</span> <span class='en hidden'>o</span></div>
-  <div class="key" data="KeyP">        <span class='ru'>з</span> <span class='en hidden'>p</span></div>
-  <div class="key" data="BracketLeft"> <span class='ru'>х</span> <span class='en hidden'>[</span></div>
-  <div class="key" data="BracketRight"><span class='ru'>ъ</span> <span class='en hidden'>]</span></div>
-  <div class="key" data="Backslash">   <span class='digit'>\\</span><span class='shift hidden'>/</span></div>
-</div>
-<div class="row">
-  <div class="key capslock"       data="CapsLock">    <span>Caps Lock</span></div>
-  <div class="key" data="KeyA">        <span class='ru'>ф</span> <span class='en hidden'>a</span></div>
-  <div class="key" data="KeyS">        <span class='ru'>ы</span> <span class='en hidden'>s</span></div>
-  <div class="key" data="KeyD">        <span class='ru'>в</span> <span class='en hidden'>d</span></div>
-  <div class="key" data="KeyF">        <span class='ru'>а</span> <span class='en hidden'>f</span></div>
-  <div class="key" data="KeyG">        <span class='ru'>п</span> <span class='en hidden'>g</span></div>
-  <div class="key" data="KeyH">        <span class='ru'>р</span> <span class='en hidden'>h</span></div>
-  <div class="key" data="KeyJ">        <span class='ru'>о</span> <span class='en hidden'>j</span></div>
-  <div class="key" data="KeyK">        <span class='ru'>л</span> <span class='en hidden'>k</span></div>
-  <div class="key" data="KeyL">        <span class='ru'>д</span> <span class='en hidden'>l</span></div>
-  <div class="key" data="Semicolon">   <span class='ru'>ж</span> <span class='en hidden'>;</span></div>
-  <div class="key" data="Quote">       <span class='ru'>э</span> <span class='en hidden'>'</span></div>
-  <div class="key enter"          data="Enter">       <span>Enter</span></div>
-</div>
-<div class="row">
-  <div class="key shift-left"          data="ShiftLeft">   <span>Shift</span></div>
-  <div class="key" data="KeyZ">        <span class='ru'>я</span> <span class='en hidden'>z</span></div>
-  <div class="key" data="KeyX">        <span class='ru'>ч</span> <span class='en hidden'>x</span></div>
-  <div class="key" data="KeyC">        <span class='ru'>с</span> <span class='en hidden'>c</span></div>
-  <div class="key" data="KeyV">        <span class='ru'>м</span> <span class='en hidden'>v</span></div>
-  <div class="key" data="KeyB">        <span class='ru'>и</span> <span class='en hidden'>b</span></div>
-  <div class="key" data="KeyN">        <span class='ru'>т</span> <span class='en hidden'>n</span></div>
-  <div class="key" data="KeyM">        <span class='ru'>ь</span> <span class='en hidden'>m</span></div>
-  <div class="key" data="Comma">       <span class='ru'>б</span> <span class='en hidden'>,</span></div>
-  <div class="key" data="Period">      <span class='ru'>ю</span> <span class='en hidden'>.</span></div>
-  <div class="key" data="Slash">       <span class='ru'>.</span>   <span class='en hidden'>,</span></div>
-  <div class="key arrow"          data="ArrowUp">     <span>&#8593;</span></div>
-  <div class="key shift-right"     data="ShiftRight">  <span>Shift</span></div>
-</div>
-<div class="row">
-  <div class="key ctrl"  data="ControlLeft">Ctrl</div>
-  <div class="key win"   data="MetaLeft">Win</div>
-  <div class="key alt"   data="AltLeft">Alt</div>
-  <div class="key space" data="Space">&nbsp;</div>
-  <div class="key alt"   data="AltRight">Alt</div>
-  <div class="key arrow" data="ArrowLeft">&#8592;</div>
-  <div class="key arrow" data="ArrowDown">&#8595;</div>
-  <div class="key arrow" data="ArrowRight">&#8594;</div>
-  <div class="key ctrl"  data="ControlRight">Ctrl</div>
-</div>
-
-</div>`;
-
+import './style.scss';
+import {
+  keys
+} from './keys';
+const keyboardKeys = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8,
+  9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220,
+  20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13,
+  16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 38, 16,
+  17, 91, 18, 32, 18, 37, 40, 39, 17,
+];
 let lengEn = false;
 let capsLock = false;
 let shift = false;
 const offsetLeft = 0;
 const offsetRight = 0;
+
 const wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
-wrapper.innerHTML = map;
 
-const row = document.createElement('div');
-row.className = 'row';
 
+const textarea = document.createElement('textarea');
+textarea.id = 'result';
+
+const keyboard = document.createElement('div');
+keyboard.className = 'keyboard';
+
+
+// return decoded key
+function decodedKey(keyboardKey) {
+  for (const key in keys) {
+    if (keyboardKey == key) {
+      return keys[key];
+    }
+  }
+}
+
+function creatKeyboard() {
+
+  keyboardKeys.forEach((keyboardKey) => {
+    const key = decodedKey(keyboardKey);
+    const keyElem = document.createElement('div');
+    keyElem.className = 'key';
+    keyElem.setAttribute('data', key.code);
+
+    if (key.hasOwnProperty('text')) {
+      keyElem.innerHTML = key.text;
+      keyElem.classList.add(String.prototype.toLowerCase.apply(key.code));
+    } else if (key.hasOwnProperty('keyName')) {
+      keyElem.innerHTML = key.keyName.ru;
+    } else {
+      keyElem.classList.add(String.prototype.toLowerCase.apply(key.code));
+      keyElem.innerHTML = key.code;
+    }
+
+    keyboard.append(keyElem);
+  });
+}
+creatKeyboard();
+wrapper.append(textarea);
+wrapper.append(keyboard);
 document.body.append(wrapper);
 
-
-const textarea = document.getElementById('result');
+// const textarea = document.getElementById('result');
 const capslockEl = document.querySelector('.capslock');
 const shiftLeftEl = document.querySelector('.shift-left');
 
-let keys = document.querySelectorAll('.key');
-keys = Array.prototype.slice.call(keys);
+var keysElem = document.querySelectorAll('.key');
+keysElem = Array.prototype.slice.call(keysElem);
 
 
 let ruSymbols = document.querySelectorAll('.ru');
@@ -117,12 +82,13 @@ digitSymbols = Array.prototype.slice.call(digitSymbols);
 
 const tilde = document.querySelector('.tilde');
 
-keys.map((elem) => {
+
+keysElem.map((elem) => {
   elem.addEventListener('mousedown', () => {
     printSimbol(elem);
     const code = elem.getAttribute('data');
     if (code === 'ShiftLeft') {
-      (shift) ? shift = false : shift = true;
+      (shift) ? shift = false: shift = true;
       shiftLeftEl.classList.toggle('shift-active');
 
       specialSymbols.map((elem) => {
@@ -143,10 +109,10 @@ keys.map((elem) => {
 
 document.addEventListener('keydown', (e) => {
   e.preventDefault();
-  const element = document.querySelector('div[data="' + `${e.code}` + '"]');
+  const element = document.querySelector('div[data=" + `${e.code}` + "]');
 
   if ((e.altKey) && (e.shiftKey)) {
-    (lengEn) ? lengEn = false : lengEn = true;
+    (lengEn) ? lengEn = false: lengEn = true;
 
     ruSymbols.map((elem) => {
       elem.classList.toggle('hidden');
@@ -157,7 +123,7 @@ document.addEventListener('keydown', (e) => {
   }
 
   if ((e.shiftKey) && (!e.altKey)) {
-    (shift) ? shift = false : shift = true;
+    (shift) ? shift = false: shift = true;
     shiftLeftEl.classList.toggle('shift-active');
 
     specialSymbols.map((elem) => {
@@ -204,12 +170,12 @@ const printSimbol = (element) => {
   element.classList.add('active');
 
   const code = element.getAttribute('data');
-  if (code !== 'Tab' && code !== 'CapsLock'
-    && code !== 'ShiftLeft' && code !== 'ShiftRight'
-    && code !== 'AltLeft' && code !== 'AltRight'
-    && code !== 'MetaLeft' && code !== 'MetaRight'
-    && code !== 'Backspace' && code !== 'ControlLeft'
-    && code !== 'ControlRight' && code !== 'Enter'
+  if (code !== 'Tab' && code !== 'CapsLock' &&
+    code !== 'ShiftLeft' && code !== 'ShiftRight' &&
+    code !== 'AltLeft' && code !== 'AltRight' &&
+    code !== 'MetaLeft' && code !== 'MetaRight' &&
+    code !== 'Backspace' && code !== 'ControlLeft' &&
+    code !== 'ControlRight' && code !== 'Enter'
   ) {
     // print a symbol
     if (!capsLock && !shift) {
@@ -241,7 +207,7 @@ const printSimbol = (element) => {
   // }
 
   if (code === 'CapsLock') {
-    (capsLock) ? capsLock = false : capsLock = true;
+    (capsLock) ? capsLock = false: capsLock = true;
     capslockEl.classList.toggle('capslock-active');
   }
 
