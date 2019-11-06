@@ -290,10 +290,14 @@ export const keys = {
     special: true,
   },
 
-  16: {
-    code: 'Shift',
-    code1: 'ShiftLeft',
-    code2: 'ShiftRight',
+  160: {
+    code: 'ShiftLeft',
+    text: 'Shift', 
+    special: true,
+  },
+  161: { 
+    code: 'ShiftRight',
+    text: 'Shift', 
     special: true,
   },
   90: {
@@ -372,10 +376,13 @@ export const keys = {
     text: '↑',
   },
 
-  17: {
-    code: 'Control',
-    code1: 'ControlLeft',
-    code2: 'ControlRight',
+  170: {
+    code: 'ControlLeft', 
+    text: 'Ctrl',
+    special: true,
+  },
+  171: {
+    code: 'ControlRight',
     text: 'Ctrl',
     special: true,
   },
@@ -384,10 +391,14 @@ export const keys = {
     special: true,
     text: 'Win',
   },
-  18: {
-    code: 'Alt',
-    code1: 'AltLeft',
-    code2: 'AltRight',
+  180: {
+    code: 'AltLeft', 
+    text: 'Alt', 
+    special: true,
+  },
+  181: {
+    code: 'AltRight',
+    text: 'Alt', 
     special: true,
   },
   32: {

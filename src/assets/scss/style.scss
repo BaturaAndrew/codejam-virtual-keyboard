@@ -23,15 +23,15 @@
     cursor: pointer;
     user-select: none;
     transition: border-radius .3s, background .2s;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.9);
+    box-sizing: border-box;
 
-    .active {
-      background-color: #5571ee;
-      transform: translateY(2px);
-    }
+  
 
     &:hover {
-      background: #251c1c
+      box-shadow: 2px 2px 2px 1px rgba(27, 23, 23, 0.8);
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
     }
 
     .hidden {
@@ -39,21 +39,29 @@
     }
   }
 
+  .active {
+    background-color: #5571ee;
+    transform: translateY(2px);
+  }
+
   .space {
     width: 330px
   }
 
-  .control {
+  .controlleft,
+  .controlright {
     width: 40px
   }
 
   .backspace,
   .capslock,
-  .shift {
+  .shiftleft,
+  .shiftright {
     width: 100px
   }
 
-  .alt,
+  .altleft,
+  .altright,
   .arrow,
   .arrowleft,
   .arrowdown,
@@ -61,9 +69,11 @@
   .arrowup,
   .backspace,
   .capslock,
-  .control,
+  .controlleft,
+  .controlright,
   .enter,
-  .shift,
+  .shiftleft,
+  .shiftright,
   .tab,
   .metaleft {
     font-weight: 600;
@@ -74,20 +84,10 @@
   .tab {
     width: 50px
   }
-
-  .del {
-    width: 44px
-  }
-
+  
   .enter,
-  .shift:last-child {
+  .shiftright {
     width: 86px
-  }
-
-  sup {
-    position: absolute;
-    margin: -10px 0 0 -20px;
-    font-size: 12px
   }
 }
 
@@ -106,12 +106,4 @@
 .shift-active {
   background-color: #5571ee !important;
   color: white !important;
-}
-
-.upper-case {
-  text-transform: uppercase;
-}
-
-.tilde {
-  display: none !important;
 }
